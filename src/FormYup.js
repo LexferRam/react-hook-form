@@ -1,5 +1,5 @@
 import './App.css';
-import {useState } from 'react'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
@@ -91,7 +91,7 @@ function FormYup() {
                             fullWidth
                             {...register('infoSelect')}
                             error={Boolean(errors.infoSelect)} helperText={errors.infoSelect?.message}
-                            disabled={contentInffo === '' ? true:false}
+                            disabled={contentInffo.toString() === '' ? true : false}
                             defaultValue=''
                         >
                             {contentInffo.map((option, i) => (
