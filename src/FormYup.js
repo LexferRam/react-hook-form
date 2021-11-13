@@ -19,12 +19,11 @@ const schema = yup.object().shape({
     password: yup.string().min(4, "Debe ingresar una contrasena de al menos 4 caracteres").max(15).required("Debe ingresar una contrasena"),
     confirmPassword: yup.string().oneOf([yup.ref("password"), null], 'Las contrasenas deben ser iguales'),
     optionSelect: yup.string().required("Debe seleccionar una opcion"),
-    infoSelect : yup.string().required("Debe seleccionar una opcion")
+    infoSelect: yup.string().required("Debe seleccionar una opcion")
 })
 
 const array = [
-    // { id: 1, desc: 'users' },
-    { id: 2, desc: 'todos' },
+    { id: 1, desc: 'todos' },
 ]
 
 function FormYup() {
@@ -43,7 +42,6 @@ function FormYup() {
         const res = await axios.get(`https://jsonplaceholder.typicode.com/${e.target.value}`)
         setContentInfo(res.data)
     };
-
 
     return (
         <>
@@ -91,7 +89,6 @@ function FormYup() {
                             margin='dense'
                             fullWidth
                             {...register('infoSelect')}
-                            // onChange={handleChangeCiudadSel}
                             error={Boolean(errors.infoSelect)} helperText={errors.infoSelect?.message}
                         >
                             {contentInffo.map((option, i) => (
