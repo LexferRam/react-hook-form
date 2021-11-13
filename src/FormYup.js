@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect, useState } from 'react'
+import {useState } from 'react'
 import { useForm } from 'react-hook-form'
 import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
@@ -16,10 +16,10 @@ const schema = yup.object().shape({
     number: yup.number().positive("Debe ser un nro positivo").required("Ingrese un numero").typeError('Debe ingresar un numero')
         .min(0, 'Min value 0.')
         .max(30, 'Max value 30.'),
-    password: yup.string().min(4, "Debe ingresar una contrasena de al menos 4 caracteres").max(15).required("Debe ingresar una contrasena"),
+    password: yup.string().min(4, "Contrasena de al menos 4 caracteres").max(15).required("Debe ingresar una contrasena"),
     confirmPassword: yup.string().oneOf([yup.ref("password"), null], 'Las contrasenas deben ser iguales'),
     optionSelect: yup.string().required("Debe seleccionar una opcion"),
-    infoSelect: yup.string().required("Debe seleccionar una opcion")
+    infoSelect: yup.string().required("Debe seleccionar una opcion"),
 })
 
 const array = [
@@ -45,9 +45,9 @@ function FormYup() {
 
     return (
         <>
-            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', width: '100%', alignItems: 'center', height: '100vh' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', width: '100%', alignItems: 'center', height: '100%' }}>
                 <form onSubmit={handleSubmit(onSubmit)} >
-                    <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', width: '100%', alignItems: 'start', height: '100vh' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', width: '100%', alignItems: 'start', height: '100%' }}>
 
                         <h1>YupForm</h1>
                         <InputLabel >Name:</InputLabel>
@@ -68,12 +68,13 @@ function FormYup() {
                         <TextField
                             select
                             label="CIUDAD"
-                            name="ciudad"
+                            name="optionSelect"
                             margin='dense'
                             fullWidth
                             {...register('optionSelect')}
                             onChange={handleChangeCiudadSel}
                             error={Boolean(errors.optionSelect)} helperText={errors.optionSelect?.message}
+                            defaultValue=''
                         >
                             {array.map((option, i) => (
                                 <MenuItem key={i} value={option.desc}>
@@ -90,6 +91,8 @@ function FormYup() {
                             fullWidth
                             {...register('infoSelect')}
                             error={Boolean(errors.infoSelect)} helperText={errors.infoSelect?.message}
+                            disabled={contentInffo === '' ? true:false}
+                            defaultValue=''
                         >
                             {contentInffo.map((option, i) => (
                                 <MenuItem key={i} value={option.title}>

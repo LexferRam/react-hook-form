@@ -9,7 +9,7 @@ function App() {
     console.log(data)
   }
   
-
+console.log(watch())
   return (
     <>
     <form onSubmit={handleSubmit(onSubmit)}>
