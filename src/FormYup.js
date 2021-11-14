@@ -45,6 +45,7 @@ function FormYup() {
 
     const onSubmit = (data) => {
         data.dateSelected = moment(data.dateSelected).format("DD/MM/YYYY");
+        data.dateSelected2 = moment(data.dateSelected2).format("DD/MM/YYYY");
         console.log(data)
         reset();
     }
